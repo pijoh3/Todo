@@ -1,6 +1,6 @@
 <template>
     <div>
-        <ul>
+        <transition-group name="list" tag="ul">
             <li class="shadow" v-for="(todoItem,index) in todoItems" :key="todoItem"> 
                 <i class="checkBtn fa-solid fa-check" :class="{checkBtnCompleted : todoItem.completed}" @click="toggleComplte(todoItem)"></i>
                 <span :class="{textCompleted : todoItem.completed}"> {{ todoItem.item }} </span>
@@ -8,7 +8,7 @@
                     <i class="fa-solid fa-trash-can"></i>
                 </span>
             </li>
-        </ul>
+        </transition-group>
     </div>
 </template>
 
@@ -58,5 +58,17 @@ li {
 .textCompleted {
     text-decoration: line-through;
     color: #b3adad;
+}
+/* List Transition */
+.list-item {
+    text-decoration: inline-block;
+    margin-right: 10px;
+}
+.list-enter-active, .list-leave-active {
+    transition: all 1s ease;
+}
+.list-enter-from, .list-leave-to {
+    opacity: 0;
+    transform: translateY(30px);
 }
 </style>

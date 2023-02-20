@@ -4,17 +4,19 @@
         <span class="addContainer">
             <i class="fa-solid fa-plus addBtn" @click="addTodo"></i>
         </span>
-        <Modal v-if="showModal" @close="showModal = false">
-            <template #header>
-                <h3>
-                    경고!
-                    <i class="closeModalBtn fa-solid fa-xmark" @click="showModal = false"></i>
-                </h3>
-            </template>
-            <template #body>
-                아무것도 입력하지 않으셨습니다.
-            </template>
-        </Modal>
+        <Teleport to="body">
+            <Modal :show="showModal" @close="toggleModal">
+                <template #header>
+                    <h3>
+                        경고!
+                        <i class="closeModalBtn fa-solid fa-xmark" @click="toggleModal"></i>
+                    </h3>
+                </template>
+                <template #body>
+                    아무것도 입력하지 않으셨습니다.
+                </template>
+            </Modal>
+        </Teleport>
     </div>
 </template>
 
@@ -36,6 +38,9 @@ export default {
                 this.showModal = !this.showModal
             }
         },
+        toggleModal() {
+            this.showModal = !this.showModal
+        }, 
         clearInput() {
             this.newTodoItem = ''
         }
