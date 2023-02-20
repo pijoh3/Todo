@@ -2,7 +2,8 @@
     <div>
         <ul>
             <li class="shadow" v-for="(todoItem,index) in todoItems" :key="todoItem"> 
-                {{ todoItem }} 
+                <i class="checkBtn fa-solid fa-check" :class="{checkBtnCompleted : todoItem.completed}" @click="toggleComplte(todoItem)"></i>
+                <span :class="{textCompleted : todoItem.completed}"> {{ todoItem.item }} </span>
                 <span class="removeBtn" @click="removeTodo(todoItem, index)">
                     <i class="fa-solid fa-trash-can"></i>
                 </span>
@@ -13,28 +14,19 @@
 
 <script>
 export default {
-    data() {
-        return {
-            todoItems: []
-        }
-    },
+    props: ['todoItems'],
     methods: {
         removeTodo(todoItem, index) {
-            localStorage.removeItem(todoItem)
-            this.todoItems.splice(index,1)
-        }
-    },
-    created() {
-        if(localStorage.length > 0) {
-           for (let i = 0; i < localStorage.length; i++) {
-            if(localStorage.key(i) !== 'loglevel:webpack-dev-server') this.todoItems.push(localStorage.key(i))
-           }
+            this.$emit('removeItem', todoItem, index)
+        },
+        toggleComplte(todoItem, index) {
+            this.$emit('toggleItem',todoItem, index)
         }
     }
 }
 </script>
 
-<style>
+<style scoped>
 ul {
     list-style-type: nono;
     padding-left: 0px;
@@ -63,7 +55,7 @@ li {
 .checkBtnCompleted {
     color: #b3adad;
 }
-.textCompeted {
+.textCompleted {
     text-decoration: line-through;
     color: #b3adad;
 }
