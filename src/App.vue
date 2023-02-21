@@ -1,68 +1,55 @@
 <template>
-<div id="app">
-  <TodoHeader/>
-  <TodoInput @addTodoITem="addOneItem"/>
-  <TodoList :todoItems="todoItems" @removeItem="removeOneItem" @toggleItem="toggleOneItem"/>
-  <TodoFooter @clearAll="clearAllItems"/>
-</div>
+  <img alt="Vue logo" src="./assets/logo.png">
+  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
 </template>
 
-<script>
+<script setup>
+import {reactive} from "vue"
 import TodoHeader from "./components/TodoHeader.vue"
 import TodoInput from "./components/TodoInput.vue"
 import TodoList from "./components/TodoList.vue"
 import TodoFooter from "./components/TodoFooter.vue"
 
-export default {
-  data() {
-    return{
-      todoItems: []
+const state = reactive({
+  todoItems: []
+})
+
+if(localStorage.length > 0) {
+    for (let i = 0; i < localStorage.length; i++) {
+        if(localStorage.key(i) !== 'loglevel:webpack-dev-server') state.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))))
     }
-  },
-  methods: {
-    addOneItem(todoItem) {
-      let obj = {completed: false, item: todoItem}
-      localStorage.setItem(todoItem,JSON.stringify(obj))
-      this.todoItems.push(obj)
-    },
-    removeOneItem(todoItem, index) {
-      localStorage.removeItem(todoItem.item)
-      this.todoItems.splice(index,1)
-    },
-    toggleOneItem(todoItem,index) {
-      this.todoItems[index].completed = !this.todoItems[index].completed
-      localStorage.removeItem(todoItem.item)
-      localStorage.setItem(todoItem.item, JSON.stringify(todoItem))
-    },
-    clearAllItems() {
-      localStorage.clear()
-      this.todoItems = []
-    }
-  },
-  created() {
-      if(localStorage.length > 0) {
-          for (let i = 0; i < localStorage.length; i++) {
-              if(localStorage.key(i) !== 'loglevel:webpack-dev-server') this.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))))
-          }
-      }
-  },
-  components: { TodoHeader, TodoInput, TodoList, TodoFooter }
+}
+
+const addOneItem = todoItem => {
+   let obj = {completed: false, item: todoItem}
+   localStorage.setItem(todoItem,JSON.stringify(obj))
+   state.todoItems.push(obj)
+}
+
+const removeOneItem = (todoItem, index) => {
+  localStorage.removeItem(todoItem.item)
+  state.todoItems.splice(index,1)
+}
+
+const toggleOneItem = (todoItem, index) => {
+  state.todoItems[index].completed = !state.todoItems[index].completed
+  localStorage.removeItem(todoItem.item)
+  localStorage.setItem(todoItem.item, JSON.stringify(todoItem))
+}
+
+const clearAllItems = () => {
+  localStorage.clear()
+  state.todoItems = []
 }
 </script>
 
 <style>
-body {
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  background-color:#F6F6F6;
-}
-input {
-  border-style: groove;
-  width : 200px;
-}
-button {
-  border-style: groove;
-}
-.shadow {
-  box-shadow: 5px 10px 10px rgba(0,0,0,0.03);
+  color: #2c3e50;
+  margin-top: 60px;
 }
 </style>

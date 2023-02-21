@@ -4,13 +4,11 @@
     </div>
 </template>
 
-<script>
-export default {
-    methods: {
-        clearTodo() {
-            this.$emit('clearAll')
-        }
-    }
+<script setup>
+
+const emit = defineEmits(["clearAll"])
+const clearTodo = () => {
+    emit('clearAll')
 }
 </script>
 
