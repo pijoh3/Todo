@@ -4,13 +4,12 @@
     </div>
 </template>
 
-<script>
-export default {
-    methods: {
-        clearTodo() {
-            this.$emit('clearAll')
-        }
-    }
+<script setup lang="ts">
+// emit
+const emit = defineEmits(["clearAll"])
+// emit event
+const clearTodo = ():void => {
+    emit('clearAll')
 }
 </script>
 
