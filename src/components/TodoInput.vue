@@ -1,11 +1,11 @@
 <template>
     <div class="inputBox shadow">
-        <input type="text" v-model="newTodoItem" @keyup.enter="addTodo">
+        <input type="text" v-model="state.newTodoItem" @keyup.enter="addTodo">
         <span class="addContainer">
             <i class="fa-solid fa-plus addBtn" @click="addTodo"></i>
         </span>
         <Teleport to="body">
-            <Modal :show="showModal" @close="toggleModal">
+            <Modal :show="state.showModal" @close="toggleModal">
                 <template #header>
                     <h3>
                         경고!
@@ -20,33 +20,39 @@
     </div>
 </template>
 
-<script>
+<script setup lang="ts">
+import {reactive} from "vue"
+
 import Modal from "./common/Modal.vue"
-export default {
-    data() {
-        return {
-            newTodoItem: "",
-            showModal: false
-        }
-    },
-    methods: {
-        addTodo() {
-            if(this.newTodoItem !== '') {
-                this.$emit('addTodoITem',this.newTodoItem)
-                this.clearInput()
-            } else {
-                this.showModal = !this.showModal
-            }
-        },
-        toggleModal() {
-            this.showModal = !this.showModal
-        }, 
-        clearInput() {
-            this.newTodoItem = ''
-        }
-    },
-    components: { Modal }
+
+// state
+const state = reactive({
+    newTodoItem: "" as string,
+    showModal : false as boolean
+})
+
+// emit
+const emit = defineEmits(["addTodoItem"])
+
+// emit event
+const addTodo = ():void => {
+    if (state.newTodoItem !== '') {
+        emit('addTodoItem', state.newTodoItem)
+        clearInput()
+    } else {
+        state.showModal = !state.showModal
+    }
 }
+
+// methods
+const clearInput = ():void => {
+    state.newTodoItem = ''
+}
+
+const toggleModal = ():void => {
+    state.showModal = !state.showModal
+}
+
 </script>
 
 <style scoped>
