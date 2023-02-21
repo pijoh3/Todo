@@ -1,29 +1,41 @@
 <template>
     <div>
-        <ul>
-            <li class="shadow" v-for="(todoItem,index) in todoItems" :key="todoItem"> 
-                <i class="checkBtn fa-solid fa-check" :class="{checkBtnCompleted : todoItem.completed}" @click="toggleComplte(todoItem)"></i>
+        <transition-group name="list" tag="ul">
+            <li class="shadow" v-for="(todoItem,index) in props.todoItems" :key="todoItem.item"> 
+                <i class="checkBtn fa-solid fa-check" :class="{checkBtnCompleted : todoItem.completed}" @click="toggleComplete(todoItem, index)"></i>
                 <span :class="{textCompleted : todoItem.completed}"> {{ todoItem.item }} </span>
                 <span class="removeBtn" @click="removeTodo(todoItem, index)">
                     <i class="fa-solid fa-trash-can"></i>
                 </span>
             </li>
-        </ul>
+        </transition-group>
     </div>
 </template>
 
-<script>
-export default {
-    props: ['todoItems'],
-    methods: {
-        removeTodo(todoItem, index) {
-            this.$emit('removeItem', todoItem, index)
-        },
-        toggleComplte(todoItem, index) {
-            this.$emit('toggleItem',todoItem, index)
-        }
-    }
+<script setup lang="ts">
+export interface todoItem {
+    completed: boolean
+    item: string
 }
+
+export interface todoList {
+    todoItems: todoItem[]
+}
+
+const props = withDefaults(defineProps<todoList>(), {
+})
+
+
+const emit = defineEmits(["removeItem", "toggleItem"])
+
+const removeTodo = (todoItem: todoItem, index: number) => {
+    emit('removeItem', todoItem, index)
+}
+
+const toggleComplete = (todoItem: todoItem, index: number) => {
+     emit('toggleItem', todoItem, index)
+}
+
 </script>
 
 <style scoped>
@@ -58,5 +70,17 @@ li {
 .textCompleted {
     text-decoration: line-through;
     color: #b3adad;
+}
+/* List Transition */
+.list-item {
+    text-decoration: inline-block;
+    margin-right: 10px;
+}
+.list-enter-active, .list-leave-active {
+    transition: all 1s ease;
+}
+.list-enter-from, .list-leave-to {
+    opacity: 0;
+    transform: translateY(30px);
 }
 </style>

@@ -1,14 +1,14 @@
 <template>
   <div id="app">
     <TodoHeader/>
-    <TodoInput @addTodoITem="addOneItem"/>
+    <TodoInput @addTodoItem="addOneItem"/>
     <TodoList :todoItems="state.todoItems" @removeItem="removeOneItem" @toggleItem="toggleOneItem"/>
     <TodoFooter @clearAll="clearAllItems"/>
   </div>
 </template>
 
 <script setup lang="ts">
-import {reactive, PropType } from "vue"
+import {reactive } from "vue"
 import TodoHeader from "./components/TodoHeader.vue"
 import TodoInput from "./components/TodoInput.vue"
 import TodoList from "./components/TodoList.vue"
@@ -16,7 +16,7 @@ import TodoFooter from "./components/TodoFooter.vue"
 
 export interface todoItem {
   completed: boolean
-  item: string | number
+  item: string
 }
 
 export interface appState {
@@ -28,30 +28,31 @@ const state = reactive<appState>({
 })
 
 if(localStorage.length > 0) {
-    for (let i = 0; i < localStorage.length; i++) {
-        if(localStorage.key(i) && localStorage.key(i) !== 'loglevel:webpack-dev-server') {
-          state.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))))
+  for (let i = 0; i < localStorage.length; i++) {
+    if(localStorage.key(i) && localStorage.key(i) !== 'loglevel:webpack-dev-server'){
+      state.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i)!)!))
     }
+  }
 }
 
-const addOneItem = (todoItem:string) => {
+const addOneItem = (todoItem: string) => {
    let obj: todoItem = {completed: false, item: todoItem}
    localStorage.setItem(todoItem,JSON.stringify(obj))
    state.todoItems.push(obj)
 }
 
-const removeOneItem = (todoItem, index) => {
+const removeOneItem = (todoItem: todoItem, index: number) => {
   localStorage.removeItem(todoItem.item)
   state.todoItems.splice(index,1)
 }
 
-const toggleOneItem = (todoItem, index) => {
+const toggleOneItem = (todoItem: todoItem, index: number) => {
   state.todoItems[index].completed = !state.todoItems[index].completed
   localStorage.removeItem(todoItem.item)
   localStorage.setItem(todoItem.item, JSON.stringify(todoItem))
 }
 
-const clearAllItems = () => {
+const clearAllItems = ():void => {
   localStorage.clear()
   state.todoItems = []
 }

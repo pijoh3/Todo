@@ -1,31 +1,58 @@
 <template>
     <div class="inputBox shadow">
-        <input type="text" v-model="newTodoItem" @keyup.enter="addTodo">
+        <input type="text" v-model="state.newTodoItem" @keyup.enter="addTodo">
         <span class="addContainer">
             <i class="fa-solid fa-plus addBtn" @click="addTodo"></i>
         </span>
+        <Teleport to="body">
+            <Modal :show="state.showModal" @close="toggleModal">
+                <template #header>
+                    <h3>
+                        경고!
+                        <i class="closeModalBtn fa-solid fa-xmark" @click="toggleModal"></i>
+                    </h3>
+                </template>
+                <template #body>
+                    아무것도 입력하지 않으셨습니다.
+                </template>
+            </Modal>
+        </Teleport>
     </div>
 </template>
 
-<script>
-export default {
-    data() {
-        return {
-            newTodoItem: ""
-        }
-    },
-    methods: {
-        addTodo() {
-            if(this.newTodoItem !== '') {
-                this.$emit('addTodoITem',this.newTodoItem)
-                this.clearInput()
-            }
-        },
-        clearInput() {
-            this.newTodoItem = ''
-        }
+<script setup lang="ts">
+import {reactive} from "vue"
+
+import Modal from "./common/Modal.vue"
+
+// state
+const state = reactive({
+    newTodoItem: "" as string,
+    showModal : false as boolean
+})
+
+// emit
+const emit = defineEmits(["addTodoItem"])
+
+// emit event
+const addTodo = ():void => {
+    if (state.newTodoItem !== '') {
+        emit('addTodoItem', state.newTodoItem)
+        clearInput()
+    } else {
+        state.showModal = !state.showModal
     }
 }
+
+// methods
+const clearInput = ():void => {
+    state.newTodoItem = ''
+}
+
+const toggleModal = ():void => {
+    state.showModal = !state.showModal
+}
+
 </script>
 
 <style scoped>

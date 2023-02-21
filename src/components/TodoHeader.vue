@@ -3,10 +3,7 @@
         <h1>TODO it!</h1>
     </header>
 </template>
-<script>
-export default {
-
-}
+<script setup lang="ts">
 </script>
 
 <style scoped>
