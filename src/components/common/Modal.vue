@@ -20,7 +20,6 @@ export interface modalProps {
 }
 const props = withDefaults(defineProps<modalProps>(), {
 })
-
 </script>
 
 <style>
@@ -54,7 +53,6 @@ const props = withDefaults(defineProps<modalProps>(), {
 .modal-body {
     margin: 20px 0;
 }
-
 /*
  * The following styles are auto-applied to elements with
  * transition="modal" when their visibility is toggled
