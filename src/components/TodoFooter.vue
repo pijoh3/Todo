@@ -4,10 +4,11 @@
     </div>
 </template>
 
-<script setup>
-
+<script setup lang="ts">
+// emit
 const emit = defineEmits(["clearAll"])
-const clearTodo = () => {
+// emit event
+const clearTodo = ():void => {
     emit('clearAll')
 }
 </script>

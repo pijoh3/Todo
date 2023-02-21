@@ -1,27 +1,41 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div id="app">
+    <TodoHeader/>
+    <TodoInput @addTodoITem="addOneItem"/>
+    <TodoList :todoItems="state.todoItems" @removeItem="removeOneItem" @toggleItem="toggleOneItem"/>
+    <TodoFooter @clearAll="clearAllItems"/>
+  </div>
 </template>
 
-<script setup>
-import {reactive} from "vue"
+<script setup lang="ts">
+import {reactive, PropType } from "vue"
 import TodoHeader from "./components/TodoHeader.vue"
 import TodoInput from "./components/TodoInput.vue"
 import TodoList from "./components/TodoList.vue"
 import TodoFooter from "./components/TodoFooter.vue"
 
-const state = reactive({
+export interface todoItem {
+  completed: boolean
+  item: string | number
+}
+
+export interface appState {
+  todoItems : todoItem[]
+}
+
+const state = reactive<appState>({
   todoItems: []
 })
 
 if(localStorage.length > 0) {
     for (let i = 0; i < localStorage.length; i++) {
-        if(localStorage.key(i) !== 'loglevel:webpack-dev-server') state.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))))
+        if(localStorage.key(i) && localStorage.key(i) !== 'loglevel:webpack-dev-server') {
+          state.todoItems.push(JSON.parse(localStorage.getItem(localStorage.key(i))))
     }
 }
 
-const addOneItem = todoItem => {
-   let obj = {completed: false, item: todoItem}
+const addOneItem = (todoItem:string) => {
+   let obj: todoItem = {completed: false, item: todoItem}
    localStorage.setItem(todoItem,JSON.stringify(obj))
    state.todoItems.push(obj)
 }
@@ -44,12 +58,18 @@ const clearAllItems = () => {
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+body {
   text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  background-color:#F6F6F6;
+}
+input {
+  border-style: groove;
+  width : 200px;
+}
+button {
+  border-style: groove;
+}
+.shadow {
+  box-shadow: 5px 10px 10px rgba(0,0,0,0.03);
 }
 </style>
