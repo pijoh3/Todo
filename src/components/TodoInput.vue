@@ -55,7 +55,7 @@ const toggleModal = ():void => {
 
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 input:focus {
     outline: none;
 }

@@ -58,7 +58,7 @@ const clearAllItems = ():void => {
 }
 </script>
 
-<style>
+<style lang="scss">
 body {
   text-align: center;
   background-color:#F6F6F6;
