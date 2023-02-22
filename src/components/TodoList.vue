@@ -38,7 +38,7 @@ const toggleComplete = (todoItem: todoItem, index: number) => {
 
 </script>
 
-<style scoped>
+<style lang="scss" scoped>
 ul {
     list-style-type: nono;
     padding-left: 0px;
