@@ -1,5 +1,12 @@
 # vue2-todo
 vue2 Todo 앱 구현
+브랜치별로 `Option API`/`Composition API`를 구분하여 보실 수 있습니다.
+
+|Branch명|desc|
+|:---|:---|
+|master|Main branch로 기본적으로 Composition API로 구성되어 있습니다. App 변화 상태에 따라 가장 최신의 소스로 유지합니다.|
+|feature/option|`Option API`로 todo 앱을 구현하였습니다. 가장 기초적인 버전의 앱입니다.|
+|feature/composition|`Composition API`로 todo앱을 구현하였습니다.`typescript`와 `eslint`설정 등을 추가하였습니다.|
 
 ## EsLint 설정
 `setup script`내 macro 설정 -> `defineProps`, `defineEmits` 등을 별도로 `import`할 필요가 없다.
