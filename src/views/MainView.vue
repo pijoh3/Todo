@@ -4,7 +4,7 @@
 </template>
 
 <script setup lang="ts">
-import VCard from '@/components/utils/VCard.vue';
+import VCard from '@/components/common/VCard.vue';
 </script>
 
 <style lang="scss" scoped>
