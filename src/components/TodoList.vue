@@ -23,6 +23,7 @@ export interface todoList {
 }
 
 const props = withDefaults(defineProps<todoList>(), {
+    todoItems: () => []
 })
 
 
