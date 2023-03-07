@@ -23,7 +23,7 @@
 <script setup lang="ts">
 import {reactive} from "vue"
 
-import Modal from "./common/Modal.vue"
+import Modal from "@/components/common/Modal.vue"
 
 // state
 const state = reactive({
