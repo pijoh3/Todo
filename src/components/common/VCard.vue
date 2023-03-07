@@ -1,5 +1,5 @@
 <template>
-    <v-card>
+    <v-card class="VCard">
     <v-card-item>
       <div>
         <div class="overLine">
@@ -42,6 +42,10 @@ const onClick= () => emit('click')
 </script>
 
 <style lang="scss">
+.VCard {
+  margin:5px 10px 20px 10px;
+}
+
 .overLine {
   font-weight: 700;
   text-align: left;
