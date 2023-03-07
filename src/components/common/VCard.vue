@@ -3,26 +3,41 @@
     <v-card-item>
       <div>
         <div class="overLine">
-          Vue basic 
+          {{ overLine }} 
         </div>
         <div class="title">
-          Todo
+          {{ title }}
         </div>
-        <div class="content">ddd</div>
+        <div class="content" v-html="content"></div>
       </div>
     </v-card-item>
     <v-card-actions>
-      <button class="VBtn VBtn--global VBtn--green" type="button">
-        <span>dfdf</span>
+      <button class="VBtn VBtn--global VBtn--green" type="button" @click="onClick">
+        <span>{{ btnLabel }}</span>
       </button>
     </v-card-actions>
   </v-card>
 </template>
 
 <script setup lang="ts">
-export interface VCardProps {
 
+export interface VCardProps {
+  overLine?: string
+  title: string
+  content?: HTMLElement|string
+  btnLabel?: string
 }
+
+// eslint-disable-next-line no-unused-vars
+const props = withDefaults(defineProps<VCardProps>(), {
+  overLine: "",
+  content: "",
+  btnLabel: "확인"
+})
+
+const emit = defineEmits(['click'])
+
+const onClick= () => emit('click')
 
 </script>
 
