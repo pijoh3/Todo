@@ -43,3 +43,11 @@ declare module "*.jpg";
 declare module "*.jpeg";
 ```
 와 같이 선언해주면 lint의 오류표시가 사라집니다.
+
+## styleLint
+scss를 사용하다가 semi-colon expected라고 뜨는경우 아래와 같이 styleLint와 stylelint-config-standard를 설치하시기 바랍니다.
+
+``` bash
+npm install --save-dev stylelint stylelint-config-standard
+yarn add -D stylelint stylelint-config-standard
+```

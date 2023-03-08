@@ -12,10 +12,12 @@
         </button>
       </div>
       <button v-if="cycle" type="button" class="pause" @click="clickPlay">
+        <a target="_blank" href="https://icons8.com/icon/102014/%EC%A0%95%EC%82%AC%EA%B0%81%ED%98%95-%EB%A9%88%EC%B6%A4">정사각형 멈춤</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
         <span>Pause</span>
       </button>
       <button v-else type="button" class="play" @click="clickPlay">
         <span>Play</span>
+        <a target="_blank" href="https://icons8.com/icon/85165/%EB%86%80%EC%9D%B4">놀이</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
       </button>
     </div>
   </div>
@@ -63,4 +65,81 @@ const clickPlay = (e:Event):void => emit("clickCycle",e)
 </script>
 
 <style lang="scss">
+.VCarousel {
+  & .VCarousel__carousel {
+    & .VCarousel__carousel__item {
+     display: block;
+     text-align: center;
+    }
+
+    & .figure {
+      & img {
+        max-width: 100%;
+      }
+    }
+  }
+  & .VCarousel__control {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 24px;
+
+    & button span {
+      margin: -1px;
+      padding: 0;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      position: absolute;
+    }
+
+    & .VCarousel__control--play {
+        & .pause {
+          display : block;
+        }
+    }
+   
+    & .VCarousel__control--pause {
+      & .play {
+        display: block;
+      }
+    }
+
+    & .play,
+    & .pause {
+      display : none;
+      width: 16px;
+      height: 16px;
+    }
+
+    & .play {
+      @include icon("16px", "16px", "icons8-play-24");
+    }
+
+    & .pause {
+      @include icon("16px", "16px", "icons8-pause-24");
+    }
+
+    & .VCarousel__control__pagination {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+
+      & button {
+        width: 4px;
+        height: 4px;
+        border-radius: 50%;
+        background-color: #666666;
+
+        & .active {
+          width: 6px;
+          height: 6px;
+          background-color: #222;
+        }
+      }
+    }
+  }
+}
 </style>
