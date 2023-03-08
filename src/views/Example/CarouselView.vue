@@ -1,6 +1,6 @@
 <template>
   <h2>Carousel</h2>
-  <VCarousel v-bind="state"/>
+  <VCarousel v-bind="state" @clickCycle="onClickCycle"/>
 </template>
 
 <script setup lang="ts">
@@ -11,6 +11,7 @@ import slide2 from '@/assets/images/slide2.jpg'
 import slide3 from '@/assets/images/slide3.jpg'
 
 const state = reactive({
+  cycle : false,
   items: [
     `<div class="carousel_item">
        <img class="imgBox" src="${slide1}"/>
@@ -24,6 +25,9 @@ const state = reactive({
   ]
 })
 
+const onClickCycle = () => {
+  state.cycle = !state.cycle
+}
 </script>
 
 <style lang="scss">

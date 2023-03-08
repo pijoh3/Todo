@@ -12,12 +12,16 @@
         </button>
       </div>
       <button v-if="cycle" type="button" class="pause" @click="clickPlay">
+        <span class="blind">
         <a target="_blank" href="https://icons8.com/icon/102014/%EC%A0%95%EC%82%AC%EA%B0%81%ED%98%95-%EB%A9%88%EC%B6%A4">정사각형 멈춤</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+        </span>
         <span>Pause</span>
       </button>
       <button v-else type="button" class="play" @click="clickPlay">
         <span>Play</span>
-        <a target="_blank" href="https://icons8.com/icon/85165/%EB%86%80%EC%9D%B4">놀이</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+        <span class="blind">
+          <a target="_blank" href="https://icons8.com/icon/85165/%EB%86%80%EC%9D%B4">놀이</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+        </span>
       </button>
     </div>
   </div>
@@ -64,7 +68,7 @@ const changeScene = (idx: number):void => {
 const clickPlay = (e:Event):void => emit("clickCycle",e)
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 @charset "UTF-8";
 
 @import "@/assets/styles/index.scss";
@@ -88,7 +92,7 @@ const clickPlay = (e:Event):void => emit("clickCycle",e)
     justify-content: center;
     gap: 12px;
     margin-top: 24px;
-
+    
     & button span {
       margin: -1px;
       padding: 0;
@@ -111,9 +115,12 @@ const clickPlay = (e:Event):void => emit("clickCycle",e)
       }
     }
 
+    & .blind {
+      display: none;
+    }
+    
     & .play,
     & .pause {
-      display : none;
       width: 16px;
       height: 16px;
     }
@@ -138,6 +145,7 @@ const clickPlay = (e:Event):void => emit("clickCycle",e)
         background-color: #666666;
 
         & .active {
+          
           width: 6px;
           height: 6px;
           background-color: #222;
