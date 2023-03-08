@@ -13,7 +13,7 @@
       </div>
       <button v-if="cycle" type="button" class="pause" @click="clickPlay">
         <span class="blind">
-        <a target="_blank" href="https://icons8.com/icon/102014/%EC%A0%95%EC%82%AC%EA%B0%81%ED%98%95-%EB%A9%88%EC%B6%A4">정사각형 멈춤</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+          <a target="_blank" href="https://icons8.com/icon/101884/%EC%A0%95%EC%82%AC%EA%B0%81%ED%98%95-%EB%A9%88%EC%B6%A4">정사각형 멈춤</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
         </span>
         <span>Pause</span>
       </button>
@@ -136,18 +136,18 @@ const clickPlay = (e:Event):void => emit("clickCycle",e)
     & .VCarousel__control__pagination {
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 10px;
 
       & button {
         width: 4px;
         height: 4px;
         border-radius: 50%;
+        padding: 0.2em;
         background-color: #666666;
 
-        & .active {
-          
-          width: 6px;
-          height: 6px;
+        &.active {
+          width: 12px;
+          height: 12px;
           background-color: #222;
         }
       }
