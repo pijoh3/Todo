@@ -28,7 +28,18 @@ vue2 Todo 앱 구현
 - component 명 관련 설정
 
 두단어 이상 컨벤션 관련 오류 시 해당 주석 포함을 통해 해결
+
 ``` vue
 <!-- eslint-disable vue/multi-word-component-names -->
 <template>
+</template>
 ```
+
+## image import
+이미지를 `import`할 때 cannot find module '@/assets/images/slide1.jpg' or its corresponding type declrations.와 같은 메세지를 lint가 표시하는데, 이를 해결하기 위해서는 src폴더 밑에 types 폴더를 만들고 `images.d.ts` 파일에
+
+``` javascript
+declare module "*.jpg";
+declare module "*.jpeg";
+```
+와 같이 선언해주면 lint의 오류표시가 사라집니다.

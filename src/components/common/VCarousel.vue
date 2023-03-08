@@ -29,7 +29,7 @@ export interface VCarouselProps {
   hideDelimiters?: boolean
   showArrows?: boolean
   cycle?: boolean
-  items?: Array<HTMLElement>
+  items?: Array<HTMLElement> | Array<string>
   itemCnt?: number
   modelValue?: number
 }

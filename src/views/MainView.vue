@@ -1,8 +1,6 @@
 <template>
   <h1>Vue Project</h1>
   <VCard v-for="(item,idx) in cardList" :key="idx" v-bind="item" @click="$event=>$router.push(item.path)"/>
-  <!-- <VCard :overLine="'basic vue'" :title="'Todo'" :content="todoTemplate" @click="$event=>$router.push('/todo')"/>
-  <VCard :overLine="'vue component'" :title="'Component'" :content="todoTemplate" @click="$event=>$router.push('/component')"/> -->
 </template>
 
 <script setup lang="ts">
