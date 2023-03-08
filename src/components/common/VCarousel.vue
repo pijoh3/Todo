@@ -65,6 +65,10 @@ const clickPlay = (e:Event):void => emit("clickCycle",e)
 </script>
 
 <style lang="scss">
+@charset "UTF-8";
+
+@import "@/assets/styles/index.scss";
+
 .VCarousel {
   & .VCarousel__carousel {
     & .VCarousel__carousel__item {

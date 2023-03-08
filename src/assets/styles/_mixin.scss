@@ -1,4 +1,4 @@
-@charset "UTF-8"
+@charset "UTF-8";
 
 @mixin icon($너비, $높이, $파일이름) {
   background-image: url("@/assets/images/icon/#{$파일이름}.png");
