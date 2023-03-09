@@ -11,7 +11,7 @@
         <div class="content" v-html="content"></div>
       </div>
     </v-card-item>
-    <v-card-actions>
+    <v-card-actions v-if="isBtn">
       <button class="VBtn VBtn--global VBtn--green" type="button" @click="onClick">
         <span>{{ btnLabel }}</span>
       </button>
@@ -25,6 +25,7 @@ export interface VCardProps {
   overLine?: string
   title: string
   content?: HTMLElement|string
+  isBtn?: boolean
   btnLabel?: string
 }
 
@@ -32,6 +33,7 @@ export interface VCardProps {
 const props = withDefaults(defineProps<VCardProps>(), {
   overLine: "",
   content: "",
+  isBtn : true,
   btnLabel: "확인"
 })
 

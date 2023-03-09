@@ -5,11 +5,14 @@
   <template v-if="currentIndex === 0">
     <CarouselView/>
   </template>
+  <template v-if="currentIndex === 1">
+    <DragView/>
+  </template>
 </template>
 
 <script setup lang="ts">
 import CarouselView from "@/views/Example/CarouselView.vue"
-
+import DragView from "./Example/DragView.vue";
 import {ref} from "vue"
 
 const tabList = ["Carousel","Drag"]
