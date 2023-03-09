@@ -12,7 +12,7 @@ vue2 Todo 앱 구현
 해당 repository와 관련하여 블로그 글을 작성하였습니다. 앞으로 Vue 관련 프로젝트를 라우터로 분기처리하여 추가적으로 글을 작성해볼까 생각중입니다.
 살을 붙여 Vite, tslint 설정, storybook 등도 연계해볼 생각입니다.
 
-[CodeUp 티스토리 블로그](https://codeup-eugene.tistory.com/2)
+[CodeUp 블로그- Composition API vs. Option API](https://codeup-eugene.tistory.com/2)
 
 ## EsLint 설정
 `setup script`내 macro 설정 -> `defineProps`, `defineEmits` 등을 별도로 `import`할 필요가 없다.
