@@ -9,58 +9,62 @@
   </VDrag>
   <hr/>
   <h2>Drag & Drop - Multiple</h2>
-  <div class="divided__left">
-    <VDrag :group="'multiple'" :list="list2" :animation="500">
-      <template #item>
-        <div v-for="(item) in list2" :key="item.title">
-          <VCard v-bind="item"/>
-        </div>
-        <!-- List 길이가 0인 경우 버그가 발생하여 길이가 0일때는 hidden된 VCard 생성 -->
-        <div v-if="list2.length === 0">
-          <VCard class="blind" :title="''"/>
-        </div>
-      </template>
-    </VDrag>
-  </div>
-  <div class="divided__right">
-    <VDrag :group="'multiple'" :list="list3" :animation="500">
-      <template #item>
-        <div v-for="(item) in list3" :key="item.title">
-          <VCard v-bind="item"/>
-        </div>
-        <!-- List 길이가 0인 경우 버그가 발생하여 길이가 0일때는 hidden된 VCard 생성 -->
-        <div v-if="list3.length === 0">
-          <VCard class="blind" :title="''"/>
-        </div>
-      </template>
-    </VDrag>
+  <div class="container">
+    <div >
+      <VDrag :group="'multiple'" :list="list2" :animation="500">
+        <template #item>
+          <div v-for="(item) in list2" :key="item.title">
+            <VCard v-bind="item"/>
+          </div>
+          <!-- List 길이가 0인 경우 버그가 발생하여 길이가 0일때는 hidden된 VCard 생성 -->
+          <div v-if="list2.length === 0">
+            <VCard class="blind" :title="''"/>
+          </div>
+        </template>
+      </VDrag>
+    </div>
+    <div>
+      <VDrag :group="'multiple'" :list="list3" :animation="500">
+        <template #item>
+          <div v-for="(item) in list3" :key="item.title">
+            <VCard v-bind="item"/>
+          </div>
+          <!-- List 길이가 0인 경우 버그가 발생하여 길이가 0일때는 hidden된 VCard 생성 -->
+          <div v-if="list3.length === 0">
+            <VCard class="blind" :title="''"/>
+          </div>
+        </template>
+      </VDrag>
+    </div>
   </div>
   <h2>Drag & Drop - Clone</h2>
-  <div class="divided__left">
-    <VDrag :group="{name: 'clone', pull: 'clone', put: false}" :list="list4" :animation="500">
-      <template #item>
-        <div v-for="(item) in list4" :key="item.title">
-          <VCard v-bind="item"/>
-        </div>
-        <!-- List 길이가 0인 경우 버그가 발생하여 길이가 0일때는 hidden된 VCard 생성 -->
-        <div v-if="list4.length === 0">
-          <VCard class="blind" :title="''"/>
-        </div>
-      </template>
-    </VDrag>
-  </div>
-  <div class="divided__right">
-    <VDrag :group="'clone'" :list="list5" :animation="500">
-      <template #item>
-        <div v-for="(item) in list5" :key="item.title">
-          <VCard v-bind="item"/>
-        </div>
-        <!-- List 길이가 0인 경우 버그가 발생하여 길이가 0일때는 hidden된 VCard 생성 -->
-        <div v-if="list5.length === 0">
-          <VCard class="blind" :title="''"/>
-        </div>
-      </template>
-    </VDrag>
+  <div class="container"> 
+    <div >
+      <VDrag :group="{name: 'clone', pull: 'clone', put: false}" :list="list4" :animation="500">
+        <template #item>
+          <div v-for="(item) in list4" :key="item.title">
+            <VCard v-bind="item"/>
+          </div>
+          <!-- List 길이가 0인 경우 버그가 발생하여 길이가 0일때는 hidden된 VCard 생성 -->
+          <div v-if="list4.length === 0">
+            <VCard class="blind" :title="''"/>
+          </div>
+        </template>
+      </VDrag>
+    </div>
+    <div>
+      <VDrag :group="'clone'" :list="list5" :animation="500">
+        <template #item>
+          <div v-for="(item) in list5" :key="item.title">
+            <VCard v-bind="item"/>
+          </div>
+          <!-- List 길이가 0인 경우 버그가 발생하여 길이가 0일때는 hidden된 VCard 생성 -->
+          <div v-if="list5.length === 0">
+            <VCard class="blind" :title="''"/>
+          </div>
+        </template>
+      </VDrag>
+    </div>
   </div>
 </template>
 
@@ -139,17 +143,13 @@ const list5 = ref<Array<ListState>>([
 </script>
 
 <style lang="scss">
-.divided__left {
-  width: 50%;
-  float:left;
-}
-
-.divided__right {
-  width: 50%;
-  float:right;
-}
-
 .blind {
   visibility: hidden;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 0;
 }
 </style>
