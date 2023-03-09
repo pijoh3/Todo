@@ -13,7 +13,9 @@ vue2 Todo 앱 구현
 살을 붙여 Vite, tslint 설정, storybook 등도 연계해볼 생각입니다.
 
 [CodeUp 블로그- Composition API vs. Option API](https://codeup-eugene.tistory.com/2)
+
 [CodeUp 블로그 - Vuetify Carousel(https://codeup-eugene.tistory.com/6)
+
 ## EsLint 설정
 `setup script`내 macro 설정 -> `defineProps`, `defineEmits` 등을 별도로 `import`할 필요가 없다.
 ``` json
