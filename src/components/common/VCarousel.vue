@@ -8,7 +8,13 @@
     <div v-if="!hideDelimiters" class="VCarousel__control" :class="cycleClass">
       <div class="VCarousel__control__pagination">
         <button type="button" v-for="idx in _itemCnt" :key="idx-1" :class="currentIndex == idx -1 ? 'active' : ''" @click="changeScene(idx -1)">
+          <span class="blind">
+            <a target="_blank" href="https://icons8.com/icon/AxGP2i17jTRw/%EB%92%A4%EB%A1%9C">뒤로</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+          </span>
           <span>{{ currentIndex }} Slide</span>
+          <span class="blind">
+            <a target="_blank" href="https://icons8.com/icon/KhaUOQy5KEH2/%EB%8B%A4%EC%9D%8C-%EA%B2%83">다음 것</a> icon by <a target="_blank" href="https://icons8.com">Icons8</a>
+          </span>
         </button>
       </div>
       <button v-if="cycle" type="button" class="pause" @click="clickPlay">
@@ -75,6 +81,17 @@ const clickPlay = (e:Event):void => emit("clickCycle",e)
 
 .VCarousel {
   & .VCarousel__carousel {
+    & .v-btn--elevated {
+      .v-btn__content {
+        margin: -1px;
+        padding: 0;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        position: absolute;
+      }
+    }
     & .VCarousel__carousel__item {
      display: block;
      text-align: center;
