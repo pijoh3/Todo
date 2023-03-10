@@ -37,6 +37,7 @@
       </VDrag>
     </div>
   </div>
+  <hr/>
   <h2>Drag & Drop - Clone</h2>
   <div class="container"> 
     <div >
