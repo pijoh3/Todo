@@ -3,19 +3,23 @@
     <v-tab class="TabNavigation__item" v-for="(item,idx) in tabList" :key="idx">{{ item }}</v-tab>
   </v-tabs>
   <template v-if="currentIndex === 0">
-    <CarouselView/>
+    <CarouselView />
   </template>
   <template v-if="currentIndex === 1">
-    <DragView/>
+    <DragView />
+  </template>
+  <template v-if="currentIndex === 2">
+    <CheckboxAccordionView />
   </template>
 </template>
 
 <script setup lang="ts">
 import CarouselView from "@/views/Example/CarouselView.vue"
-import DragView from "./Example/DragView.vue";
+import DragView from "@/views/Example/DragView.vue";
+import CheckboxAccordionView from "@/views/Example/CheckboxAccordionView.vue";
 import {ref} from "vue"
 
-const tabList = ["Carousel","Drag"]
+const tabList = ["Carousel","Drag","CheckboxAccordion"]
 
 const currentIndex = ref(0)
 </script>
