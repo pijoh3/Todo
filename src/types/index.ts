@@ -1,3 +1,6 @@
-import {News} from "@/types/store"
+import {GeneralInfo, ResponseGeneralInfo} from "@/types/store"
 
-export {News}
+export {
+  GeneralInfo, 
+  ResponseGeneralInfo
+}

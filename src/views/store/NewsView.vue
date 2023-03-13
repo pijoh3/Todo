@@ -5,10 +5,10 @@
 </template>
 <script setup lang="ts">
 import {ref} from "vue"
-import {News} from "@/types"
+import {GeneralInfo} from "@/types"
 import {fetchNewsList} from "@/api"
 
-const users = ref<Array<News>>([])
+const users = ref<Array<GeneralInfo>>([])
 
 fetchNewsList()
 .then(response => {

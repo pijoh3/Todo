@@ -1,4 +1,4 @@
-export interface News {
+export interface GeneralInfo {
   comments_count?: number
   domain?: string
   id?: number
@@ -9,4 +9,8 @@ export interface News {
   type?: string
   url?: string
   user?: string
+}
+
+export interface ResponseGeneralInfo {
+  data: Array<GeneralInfo>
 }

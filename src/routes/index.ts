@@ -9,7 +9,7 @@ const routes = [
   {path:"/", name:"home",component: MainView, meta: {title: "앱"}},
   {path:"/todo", name:"todo",component: TodoView, meta: {title: "todo"}},
   {path: "/component", name: "component", component: ComponentView, meta: {title: "component"}},
-  {path: "/store", name: "store", component: StoreView,
+  {path: "/store", redirect:"/store/news", name: "store", component: StoreView,
    children: [...store]
   }
 ]
