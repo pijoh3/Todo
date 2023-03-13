@@ -1,7 +1,7 @@
 <template>
-  <v-expansion-panels class="VCheckboxAccordion">
+  <v-expansion-panels class="VCheckboxAccordion" v-model="_modelValue">
     <v-expansion-panel>
-      <v-expansion-panel-title v-model="_modelValue" class="VCheckboxAccordion__label__headline">
+      <v-expansion-panel-title class="VCheckboxAccordion__label__headline">
         <v-checkbox :label="titleText" v-model="_isChecked" @click.stop @change="onClickCheckAll($event, _isChecked)" :true-icon="'mdi-check-circle'" :false-icon="'mdi-check-circle-outline'">
         </v-checkbox>
       </v-expansion-panel-title>
