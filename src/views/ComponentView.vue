@@ -14,9 +14,9 @@
 </template>
 
 <script setup lang="ts">
-import CarouselView from "@/views/Example/CarouselView.vue"
-import DragView from "@/views/Example/DragView.vue";
-import CheckboxAccordionView from "@/views/Example/CheckboxAccordionView.vue";
+import CarouselView from "@/views/example/CarouselView.vue"
+import DragView from "@/views/example/DragView.vue";
+import CheckboxAccordionView from "@/views/example/CheckboxAccordionView.vue";
 import {ref} from "vue"
 
 const tabList = ["Carousel","Drag","CheckboxAccordion"]

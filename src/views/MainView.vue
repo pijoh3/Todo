@@ -16,6 +16,10 @@ const cardList = ref([
    content: `<p>Vuetify, vue.draggable.next 등의 라이브러리를 활용하여 Component를 제작합니다.</p>
              <p><b>사용 기술</b> : Vuetify, vue.draggable.next 등</p>`,
    path: "/component"},
+   {overLine: "Vuex vs. Pinia", title: "Store", 
+   content: `<p>Vuex와 Pinia를 비교하여 다루어봅니다.</p>
+             <p><b>사용 기술</b> : Vuex, Pinia</p>`,
+   path: "/store"},
 ])
 </script>
 
