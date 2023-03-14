@@ -4,19 +4,14 @@
   </div>
 </template>
 <script setup lang="ts">
-import {ref} from "vue"
-import {GeneralInfo} from "@/types"
-import { fetchAskList } from '@/api';
+import { useStore } from "vuex";
+import { computed } from "vue"
 
-const ask = ref<Array<GeneralInfo>>([])
+const store = useStore()
 
-fetchAskList()
-  .then(response => {
-    console.log(response.data)
-    ask.value = response.data
-  })
-  .catch(error => console.log(error))
+const ask = computed(() => store.state.ask)
 
+store.dispatch('FETCH_ASK')
 </script>
 
 <style lang="scss">

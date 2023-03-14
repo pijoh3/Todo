@@ -1,22 +1,17 @@
 <template>
-  <div v-for="user in users" :key="user.id">
-   {{ user.title }}
+  <div v-for="item in news" :key="item.id">
+   {{ item.title }}
   </div>
 </template>
 <script setup lang="ts">
-import {ref} from "vue"
-import {GeneralInfo} from "@/types"
-import {fetchNewsList} from "@/api"
+import {useStore} from "vuex"
+import { computed } from "vue"
 
-const users = ref<Array<GeneralInfo>>([])
+const store = useStore()
 
-fetchNewsList()
-.then(response => {
-    console.log(response)
-    users.value = response.data
-  })
-  .catch(error => console.log(error))
+const news = computed(() => store.state.news)
 
+store.dispatch('FETCH_NEWS')
 </script>
 
 <style lang="scss">

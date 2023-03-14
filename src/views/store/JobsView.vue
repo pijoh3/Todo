@@ -1,21 +1,17 @@
 <template>
-   <div v-for="item in jobs" :key="item.id">
-    {{ item.title }}
+   <div v-for="job in jobs" :key="job.id">
+    {{ job.title }}
   </div>
 </template>
 <script setup lang="ts">
-import {ref} from "vue"
-import { GeneralInfo } from "@/types";
-import { fetchJobsList } from '@/api';
+import { useStore } from "vuex";
+import { computed } from "vue"
 
-const jobs = ref<Array<GeneralInfo>>([])
+const store = useStore()
 
-fetchJobsList()
-  .then(response => {
-    jobs.value = response.data
-  })
-  .catch(error => console.log(error))
+const jobs = computed(() => store.state.jobs)
 
+store.dispatch('FETCH_JOBS')
 </script>
 
 <style lang="scss">
