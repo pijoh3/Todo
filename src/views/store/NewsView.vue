@@ -1,6 +1,14 @@
 <template>
-  <div v-for="item in news" :key="item.id">
-   {{ item.title }}
+  <div>
+    <p v-for="item in news" :key="item.id">
+      <a :href="item.url">{{ item.title }}</a>
+      <small>
+        {{ item.time_ago }} by 
+        <router-link :to="`/store/user/${item.user}`">
+          {{ item.user }}
+        </router-link>
+      </small>
+    </p>
   </div>
 </template>
 

@@ -1,8 +1,10 @@
-import {GeneralInfo, ResponseGeneralInfo, StoreState, RootState} from "@/types/store"
+import {GeneralInfo, Response, UserInfo, ItemInfo, StoreState, RootState} from "@/types/store"
 
 export {
   GeneralInfo, 
-  ResponseGeneralInfo,
+  Response,
+  UserInfo,
   StoreState,
-  RootState
+  RootState,
+  ItemInfo
 }

@@ -1,12 +1,14 @@
-import { fetchAskList, fetchJobsList, fetchNewsList } from "@/api";
-import { Module, ActionContext} from "vuex"
+import { fecthUserInfo, fetchAskList, fetchJobsList, fetchNewsList, fetchCommentItem } from "@/api";
+import { Module} from "vuex"
 import { StoreState, RootState } from "@/types";
 
 const storeModule: Module<StoreState, RootState> = {
   state : {
     news: [],
     jobs: [],
-    ask: []
+    ask: [],
+    user: {},
+    item: {}
   },
   mutations: {
     SET_NEWS(state, news) {
@@ -17,6 +19,12 @@ const storeModule: Module<StoreState, RootState> = {
     },
     SET_ASK(state, ask) {
       state.ask = ask
+    },
+    SET_USER(state, user) {
+      state.user = user
+    },
+    SET_ITEM(state, item) {
+      state.item = item
     }
   },
   actions: {
@@ -33,6 +41,16 @@ const storeModule: Module<StoreState, RootState> = {
     FETCH_ASK({commit}) {
       fetchAskList()
         .then(({data}) => commit('SET_ASK', data))
+        .catch(error => console.log(error))
+    },
+    FETCH_USER({commit}, name) {
+      fecthUserInfo(name)
+        .then(({data}) => commit('SET_USER', data))
+        .catch(error => console.log(error))
+    },
+    FETCH_ITEM({commit}, id) {
+      fetchCommentItem(id)
+        .then(({data}) => commit('SET_ITEM',data))
         .catch(error => console.log(error))
     }
   }
