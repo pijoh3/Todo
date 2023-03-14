@@ -1,6 +1,8 @@
-import {GeneralInfo, ResponseGeneralInfo} from "@/types/store"
+import {GeneralInfo, ResponseGeneralInfo, StoreState, RootState} from "@/types/store"
 
 export {
   GeneralInfo, 
-  ResponseGeneralInfo
+  ResponseGeneralInfo,
+  StoreState,
+  RootState
 }
