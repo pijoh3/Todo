@@ -7,7 +7,7 @@ import * as directives from "vuetify/directives";
 import '@mdi/font/css/materialdesignicons.css';
 import 'vuetify/styles';
 import {store} from "@/store"
-
+import eventBus from "@/utils/bus";
 
 const vuetify = createVuetify({
   components,
@@ -28,4 +28,5 @@ createApp(App)
   .use(store)
   .use(router)
   .use(vuetify)
+  .provide('$bus',eventBus)
   .mount("#app");

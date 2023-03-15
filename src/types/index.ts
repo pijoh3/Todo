@@ -1,4 +1,5 @@
 import {GeneralInfo, Response, UserInfo, ItemInfo, StoreState, RootState} from "@/types/store"
+import { EventBusType } from "@/types/bus"
 
 export {
   GeneralInfo, 
@@ -6,5 +7,6 @@ export {
   UserInfo,
   StoreState,
   RootState,
-  ItemInfo
+  ItemInfo,
+  EventBusType
 }

@@ -30,27 +30,42 @@ const storeModule: Module<StoreState, RootState> = {
   actions: {
     FETCH_NEWS({commit}) {
       fetchNewsList()
-        .then(({data}) => commit('SET_NEWS', data))
+        .then(({data}) => {
+          commit('SET_NEWS', data)
+          return data
+        })
         .catch(error => console.log(error))
     },
     FETCH_JOBS({commit}) {
       fetchJobsList()
-        .then(({data}) => commit('SET_JOBS', data))
+        .then(({data}) => {
+          commit('SET_JOBS', data)
+          return data
+        })
         .catch(error => console.log(error))
     },
     FETCH_ASK({commit}) {
       fetchAskList()
-        .then(({data}) => commit('SET_ASK', data))
+        .then(({data}) => {
+          commit('SET_ASK', data)
+          return data
+        })
         .catch(error => console.log(error))
     },
     FETCH_USER({commit}, name) {
       fecthUserInfo(name)
-        .then(({data}) => commit('SET_USER', data))
+        .then(({data}) => {
+          commit('SET_USER', data)
+          return data
+        })
         .catch(error => console.log(error))
     },
     FETCH_ITEM({commit}, id) {
       fetchCommentItem(id)
-        .then(({data}) => commit('SET_ITEM',data))
+        .then(({data}) => {
+          commit('SET_ITEM',data)
+          return data
+        })
         .catch(error => console.log(error))
     }
   }

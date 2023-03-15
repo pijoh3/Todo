@@ -6,6 +6,24 @@
 
 <script setup lang="ts">
 import ListItem from "@/components/store/ListItem.vue";
+import { useStore } from "vuex";
+import {inject} from "vue"
+import { EventBusType } from "@/types"
+
+const store = useStore()
+const $bus = inject('$bus') as EventBusType
+
+$bus.emit('start:spinner')
+
+// Spinner 확인을 위해 시간 지연
+setTimeout(() => {
+  store.dispatch('FETCH_JOBS')
+  .then(() => {
+    console.log('fetched')
+    $bus.emit('end:spinner')
+  })
+}, 3000)
+
 </script>
 
 <style lang="scss">

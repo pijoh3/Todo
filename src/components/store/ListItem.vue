@@ -44,20 +44,6 @@ const route = useRoute()
 
 const name = route.name
 
-switch (name) {
-  case 'news':
-    store.dispatch('FETCH_NEWS')
-    break;
-  case 'ask':
-    store.dispatch('FETCH_ASK')    
-    break;
-  case 'jobs':
-    store.dispatch('FETCH_JOBS')    
-    break;
-  default:
-    break;
-}
-
 const listItems = computed(() => {
   if(name === 'news') return store.state.storeModule.news
   else if(name === 'ask') return store.state.storeModule.ask
