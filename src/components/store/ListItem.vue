@@ -1,0 +1,98 @@
+<template>
+  <div>
+    <ul class="item-list">
+      <li v-for="item in listItems" :key="item.id" class="post">
+        <!-- 포인트 영역 -->
+        <div class="points">
+          {{  item.points  || 0}}
+        </div>
+        <!-- 기타 정보 영역 -->
+        <div>
+          <!-- 타이틀 영역 -->
+          <p class="item-title">
+            <template v-if="item.domain">
+              <a :href="item.url">
+                {{ item.title }}
+              </a>
+            </template>
+            <template v-else>
+              <router-link :to="`/store/item/${item.id}`">
+                {{ item.title }}
+              </router-link>
+            </template>
+          </p>
+          <small class="link-text">
+            {{ item.time_ago }} by 
+            <router-link v-if="item.user" class="link-text" :to="`/store/user/${item.user}`">
+              {{ item.user }}
+            </router-link>
+            <a v-else :href="item.url">{{ item.domain }}</a>
+          </small>
+        </div>
+      </li>
+    </ul>
+  </div>
+</template>
+
+<script setup lang="ts">
+import {useStore} from "vuex"
+import { computed } from "vue"
+import { useRoute } from "vue-router";
+
+const store = useStore()
+const route = useRoute()
+
+const name = route.name
+
+switch (name) {
+  case 'news':
+    store.dispatch('FETCH_NEWS')
+    break;
+  case 'ask':
+    store.dispatch('FETCH_ASK')    
+    break;
+  case 'jobs':
+    store.dispatch('FETCH_JOBS')    
+    break;
+  default:
+    break;
+}
+
+const listItems = computed(() => {
+  if(name === 'news') return store.state.storeModule.news
+  else if(name === 'ask') return store.state.storeModule.ask
+  else return store.state.storeModule.jobs  
+})
+
+</script>
+
+<style lang="scss">
+.item-list {
+  margin: 0;
+  padding: 0;
+
+  .post {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+
+    .points {
+      width: 80px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #42b883
+    }
+
+    .item-title {
+      margin: 0;
+    }
+
+    .link-text {
+      color: #828282;
+    }
+  }
+}  
+</style>
