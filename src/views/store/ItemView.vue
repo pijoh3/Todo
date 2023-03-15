@@ -1,23 +1,18 @@
 <template>
   <div>
     <section>
-      <div class="user-container">
-        <div>
-          <i class="fa-solid fa-user"></i>
-        </div>
-        <div class="user-description">
+      <UserProfile>
+        <template #username>
           <router-link :to="`/store/user/${itemInfo.user}`">
             {{ itemInfo.user }}
           </router-link>
-          <div class="time">
-            {{ itemInfo.time_ago }}
-          </div>
-        </div>
-      </div>
-      <h2>{{ itemInfo.title }}</h2>
+        </template>
+        <template #time>{{ `Posted ${itemInfo.time_ago}` }}</template>
+      </UserProfile>
     </section>
-    <section>
-      <div v-html="itemInfo.content">
+    <section class="item-container"> 
+      <h2>{{ itemInfo.title }}</h2>
+      <div class="item__content" v-html="itemInfo.content">
       </div>
     </section>
 </div>
@@ -27,6 +22,7 @@
 import { useRoute } from 'vue-router';
 import { useStore } from 'vuex';
 import { computed } from "vue"
+import UserProfile from '@/components/store/UserProfile.vue';
 
 const route = useRoute()
 const store = useStore()
@@ -57,4 +53,12 @@ store.dispatch('FETCH_ITEM', itemId)
   }
 }
 
+.item-container {
+  padding-left: 0.5rem;
+  text-align: left;
+
+  .item__content {
+    padding-top: 1rem;
+  }
+}
 </style>

@@ -1,12 +1,20 @@
 <template>
   <div>
-    <p>name : {{ userInfo.id }}</p>
-    <p>karma : {{ userInfo.karma }}</p>
-    <p>created : {{ userInfo.created }}</p>
+    <UserProfile>
+      <template #username>{{ userInfo.id }}</template>
+      <template #time>
+        <span>{{ `Joined ${userInfo.created}` }}, </span>
+      </template>
+      <template #karma>
+        <span>{{ userInfo.karma }}</span>
+      </template>
+    </UserProfile>
   </div>
 </template>
 
 <script setup lang="ts">
+import UserProfile from '@/components/store/UserProfile.vue';
+
 import { useRoute } from 'vue-router';
 import { useStore } from 'vuex';
 import { computed } from "vue"
