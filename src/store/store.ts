@@ -1,57 +1,25 @@
-import { fecthUserInfo, fetchAskList, fetchJobsList, fetchNewsList, fetchCommentItem } from "@/api";
+import { fecthUserInfo, fetchAskList, fetchJobsList, fetchList, fetchNewsList, fetchCommentItem } from "@/api";
 import { Module} from "vuex"
 import { StoreState, RootState } from "@/types";
 
 const storeModule: Module<StoreState, RootState> = {
   state : {
-    news: [],
-    jobs: [],
-    ask: [],
     user: {},
-    item: {}
+    item: {},
+    list: []
   },
   mutations: {
-    SET_NEWS(state, news) {
-      state.news = news
-    },
-    SET_JOBS(state, jobs) {
-      state.jobs = jobs
-    },
-    SET_ASK(state, ask) {
-      state.ask = ask
-    },
     SET_USER(state, user) {
       state.user = user
     },
     SET_ITEM(state, item) {
       state.item = item
+    },
+    SET_LIST(state, list) {
+      state.list = list
     }
   },
   actions: {
-    FETCH_NEWS({commit}) {
-      fetchNewsList()
-        .then(({data}) => {
-          commit('SET_NEWS', data)
-          return data
-        })
-        .catch(error => console.log(error))
-    },
-    FETCH_JOBS({commit}) {
-      fetchJobsList()
-        .then(({data}) => {
-          commit('SET_JOBS', data)
-          return data
-        })
-        .catch(error => console.log(error))
-    },
-    FETCH_ASK({commit}) {
-      fetchAskList()
-        .then(({data}) => {
-          commit('SET_ASK', data)
-          return data
-        })
-        .catch(error => console.log(error))
-    },
     FETCH_USER({commit}, name) {
       fecthUserInfo(name)
         .then(({data}) => {
@@ -67,6 +35,14 @@ const storeModule: Module<StoreState, RootState> = {
           return data
         })
         .catch(error => console.log(error))
+    },
+    FETCH_LIST({commit}, pageName) {
+      fetchList(pageName)
+        .then(({data}) => {
+          commit('SET_LIST', data)
+          return data
+        })
+        .catch(error => console.log(error)) 
     }
   }
 }

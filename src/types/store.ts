@@ -40,11 +40,9 @@ export interface ItemInfo {
 
 // Store State 관리 interface
 export interface StoreState {
-  news: Array<GeneralInfo>
-  jobs: Array<GeneralInfo>
-  ask: Array<GeneralInfo>
   user: UserInfo
   item: ItemInfo
+  list: Array<GeneralInfo>
 }
 
 export interface RootState {

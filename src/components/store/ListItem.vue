@@ -37,18 +37,10 @@
 <script setup lang="ts">
 import {useStore} from "vuex"
 import { computed } from "vue"
-import { useRoute } from "vue-router";
 
 const store = useStore()
-const route = useRoute()
 
-const name = route.name
-
-const listItems = computed(() => {
-  if(name === 'news') return store.state.storeModule.news
-  else if(name === 'ask') return store.state.storeModule.ask
-  else return store.state.storeModule.jobs  
-})
+const listItems = computed(() => store.state.storeModule.list)
 
 </script>
 

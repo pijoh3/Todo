@@ -18,6 +18,10 @@ const fetchJobsList = () : Promise<Response> => {
   return axios.get(`${config.baseURL}jobs/1.json`)
 }
 
+const fetchList = (pageName : string) => {
+  return axios.get(`${config.baseURL}${pageName}/1.json`)
+}
+
 const fecthUserInfo = (userName : string) : Promise<Response> => {
   return axios.get(`${config.baseURL}user/${userName}.json`)
 }
@@ -26,10 +30,12 @@ const fetchCommentItem = (id : number) : Promise<Response> => {
   return axios.get(`${config.baseURL}item/${id}.json`)
 }
 
+
 export {
   fetchNewsList,
   fetchAskList,
   fetchJobsList,
+  fetchList,
   fecthUserInfo,
   fetchCommentItem
 }
