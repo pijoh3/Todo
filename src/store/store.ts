@@ -1,4 +1,4 @@
-import { fecthUserInfo, fetchAskList, fetchJobsList, fetchList, fetchNewsList, fetchCommentItem } from "@/api";
+import { fecthUserInfo, fetchList, fetchCommentItem } from "@/api";
 import { Module} from "vuex"
 import { StoreState, RootState } from "@/types";
 

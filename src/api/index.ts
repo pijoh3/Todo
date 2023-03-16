@@ -6,18 +6,6 @@ const config = {
   baseURL : process.env.VUE_APP_HNPWA_URL
 }
 
-const fetchNewsList = () : Promise<Response> => {
-  return axios.get(`${config.baseURL}news/1.json`)
-}
-
-const fetchAskList = () : Promise<Response> => {
-  return axios.get(`${config.baseURL}ask/1.json`)
-}
-
-const fetchJobsList = () : Promise<Response> => {
-  return axios.get(`${config.baseURL}jobs/1.json`)
-}
-
 const fetchList = (pageName : string) => {
   return axios.get(`${config.baseURL}${pageName}/1.json`)
 }
@@ -32,9 +20,6 @@ const fetchCommentItem = (id : number) : Promise<Response> => {
 
 
 export {
-  fetchNewsList,
-  fetchAskList,
-  fetchJobsList,
   fetchList,
   fecthUserInfo,
   fetchCommentItem
