@@ -6,18 +6,32 @@ const config = {
   baseURL : process.env.VUE_APP_HNPWA_URL
 }
 
-const fetchList = (pageName : string) => {
-  return axios.get(`${config.baseURL}${pageName}/1.json`)
+const fetchList = async (pageName : string): Promise<Response> => {
+  try{
+    return await axios.get(`${config.baseURL}${pageName}/1.json`)
+  } catch(error) {
+    console.log(error)
+    return Promise.reject()
+  }
 }
 
-const fecthUserInfo = (userName : string) : Promise<Response> => {
-  return axios.get(`${config.baseURL}user/${userName}.json`)
+const fecthUserInfo = async (userName : string) : Promise<Response> => {
+  try {
+    return await axios.get(`${config.baseURL}user/${userName}.json`)
+  } catch(error) {
+    console.log(error)
+    return Promise.reject()
+  }
 }
 
-const fetchCommentItem = (id : number) : Promise<Response> => {
-  return axios.get(`${config.baseURL}item/${id}.json`)
+const fetchCommentItem = async (id : number) : Promise<Response> => {
+  try {
+    return await axios.get(`${config.baseURL}item/${id}.json`)
+  } catch(error) {
+    console.log(error)
+    return Promise.reject()
+  }
 }
-
 
 export {
   fetchList,
