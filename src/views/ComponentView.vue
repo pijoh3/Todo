@@ -11,15 +11,19 @@
   <template v-if="currentIndex === 2">
     <CheckboxAccordionView />
   </template>
+  <template v-if="currentIndex === 3">
+    <ChartView />
+  </template>
 </template>
 
 <script setup lang="ts">
 import CarouselView from "@/views/example/CarouselView.vue"
-import DragView from "@/views/example/DragView.vue";
-import CheckboxAccordionView from "@/views/example/CheckboxAccordionView.vue";
+import DragView from "@/views/example/DragView.vue"
+import CheckboxAccordionView from "@/views/example/CheckboxAccordionView.vue"
+import ChartView from "./example/ChartView.vue"
 import {ref} from "vue"
 
-const tabList = ["Carousel","Drag","CheckboxAccordion"]
+const tabList = ["Carousel","Drag","CheckboxAccordion","Chart"]
 
 const currentIndex = ref(0)
 </script>

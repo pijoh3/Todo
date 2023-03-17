@@ -8,6 +8,7 @@ import '@mdi/font/css/materialdesignicons.css';
 import 'vuetify/styles';
 import {store} from "@/store"
 import eventBus from "@/utils/bus";
+import ChartPlugin from "@/plugins/ChartPlugin";
 
 const vuetify = createVuetify({
   components,
@@ -28,5 +29,6 @@ createApp(App)
   .use(store)
   .use(router)
   .use(vuetify)
+  .use(ChartPlugin)
   .provide('$bus',eventBus)
   .mount("#app");

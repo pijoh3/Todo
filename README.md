@@ -53,3 +53,14 @@ scss를 사용하다가 semi-colon expected라고 뜨는경우 아래와 같이 
 npm install --save-dev stylelint stylelint-config-standard
 yarn add -D stylelint stylelint-config-standard
 ```
+
+## chartjs
+
+chartjs 사용 시 "linear" is not a registered scale. 에러가 발생하는 경우
+
+```
+import { Chart, registerables } from "chart.js"
+
+Chart.register(...registerables)
+```
+를 사용하면 렌더링된다.
