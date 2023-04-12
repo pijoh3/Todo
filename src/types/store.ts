@@ -12,8 +12,9 @@ export interface GeneralInfo {
   user?: string
 }
 
+export type ResponseData = Array<GeneralInfo> | Array<UserInfo>
 export interface Response {
-  data: Array<GeneralInfo> | Array<UserInfo>
+  data: ResponseData
 }
 
 export interface UserInfo {

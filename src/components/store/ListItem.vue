@@ -35,13 +35,13 @@
 </template>
 
 <script setup lang="ts">
-import {useStore} from "vuex"
+import { useListStore } from "@/store";
+import { GeneralInfo } from "@/types";
 import { computed } from "vue"
 
-const store = useStore()
+const store = useListStore()
 
-const listItems = computed(() => store.state.storeModule.list)
-
+const listItems= computed(() => store.list as GeneralInfo[])
 </script>
 
 <style lang="scss">

@@ -20,18 +20,19 @@
 
 <script setup lang="ts">
 import { useRoute } from 'vue-router';
-import { useStore } from 'vuex';
+import { useListStore } from '@/store';
 import { computed } from "vue"
+import { ItemInfo } from '@/types';
 import UserProfile from '@/components/store/UserProfile.vue';
 
 const route = useRoute()
-const store = useStore()
+const store = useListStore()
 
-const itemId = route.params.id
+const itemId :string | string[] = route.params.id
 
-const itemInfo = computed(() => store.state.storeModule.item)
+const itemInfo = computed(() => store.item as ItemInfo)
 
-store.dispatch('FETCH_ITEM', itemId)
+store.setItem(itemId)
 
 </script>
 
