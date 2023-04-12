@@ -1,12 +1,12 @@
 import axios from 'axios'
-import {Response, UserInfo} from "@/types/store"
+import {Response} from "@/types/store"
 
 // HTTP Request & Response와 관련된 기본 설정
 const config = {
   baseURL : process.env.VUE_APP_HNPWA_URL
 }
 
-const fetchList = async (pageName : string): Promise<Response> => {
+const fetchList = async (pageName : string | string[]): Promise<Response> => {
   try{
     return await axios.get(`${config.baseURL}${pageName}/1.json`)
   } catch(error) {
@@ -15,7 +15,7 @@ const fetchList = async (pageName : string): Promise<Response> => {
   }
 }
 
-const fecthUserInfo = async (userName : string) : Promise<Response> => {
+const fecthUserInfo = async (userName : string | string[]) : Promise<Response> => {
   try {
     return await axios.get(`${config.baseURL}user/${userName}.json`)
   } catch(error) {
@@ -24,7 +24,7 @@ const fecthUserInfo = async (userName : string) : Promise<Response> => {
   }
 }
 
-const fetchCommentItem = async (id : number) : Promise<Response> => {
+const fetchCommentItem = async (id : string | string[]) : Promise<Response> => {
   try {
     return await axios.get(`${config.baseURL}item/${id}.json`)
   } catch(error) {

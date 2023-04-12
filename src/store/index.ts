@@ -1,6 +1,5 @@
-import {createStore} from "vuex";
-import storeModule from "@/store/store"
+import useListStore from "@/store/useListStore"
 
-export const store = createStore({
-  modules : { storeModule }
-})
+export {
+  useListStore
+}

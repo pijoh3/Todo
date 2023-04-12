@@ -2,20 +2,23 @@ import UserView from "@/views/store/UserView.vue"
 import ItemView from "@/views/store/ItemView.vue"
 import withListView from "@/views/store/hoc/withListView"
 import eventBus from "@/utils/bus"
-import { store } from "@/store"
+import { useListStore } from "@/store"
+
 
 // List 데이터 호출
 const dispatchList = (to:any, from:any, next:any) => {
   const bus = eventBus 
   bus.emit('start:spinner')
+
+  const store = useListStore()  
   // Spinner 확인을 위해 시간 지연
   setTimeout(() => {
-    store.dispatch('FETCH_LIST', to.name)
+    store.setList(to.name)
     .then(() => {
       console.log('fetched')
       next()
     })
-    .catch(error => console.log(error))
+    .catch((error:any) => console.log(error))
   }, 3000)
 }
 

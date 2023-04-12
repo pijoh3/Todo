@@ -16,17 +16,18 @@
 import UserProfile from '@/components/store/UserProfile.vue';
 
 import { useRoute } from 'vue-router';
-import { useStore } from 'vuex';
+import { useListStore } from '@/store';
 import { computed } from "vue"
+import { UserInfo } from '@/types';
 
 const route = useRoute()
-const store = useStore()
+const store = useListStore()
 
-const userName = route.params.id
+const userName: string | string[] = route.params.id
 
-const userInfo = computed(()=> store.state.storeModule.user)
+const userInfo = computed(()=> store.user as UserInfo)
 
-store.dispatch('FETCH_USER', userName)
+store.setUser(userName)
 
 </script>
 
